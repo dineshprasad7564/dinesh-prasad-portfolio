@@ -12,6 +12,7 @@ A simple portfolio website about me. It has my photo, about me, my skills, my pr
 
 - index.html - the page content
 - style.css - the design
+- script.js - opens and closes the menu on mobile
 - profile.jpg - my photo
 
 ## How to run
@@ -20,4 +21,4 @@ Open the index.html file in a browser. Nothing else is needed.
 
 ## Made with
 
-Simple HTML and CSS. No frameworks used.
+Simple HTML, CSS and JavaScript. No frameworks used.

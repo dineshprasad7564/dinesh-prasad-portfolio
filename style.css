@@ -44,6 +44,18 @@ nav a:hover {
   color: #f1c40f;
 }
 
+/* The menu button is hidden on desktop */
+.menu-btn {
+  display: none;
+  background-color: #f1c40f;
+  color: #2c3e50;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 /* Home section */
 .home {
   text-align: center;
@@ -120,7 +132,24 @@ footer {
     text-align: center;
   }
 
+  /* On mobile the menu is hidden until the button is clicked */
+  .menu-btn {
+    display: block;
+    margin: 10px auto;
+  }
+
+  nav {
+    display: none;
+    width: 100%;
+  }
+
+  /* script.js adds this class when the button is clicked */
+  nav.show {
+    display: block;
+  }
+
   nav a {
+    display: block;
     margin: 5px;
   }
 
