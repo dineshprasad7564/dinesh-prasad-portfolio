@@ -24,3 +24,5 @@ On mobile, click the Menu button to open the menu.
 ## Made with
 
 Simple HTML, CSS and JavaScript. No frameworks used.
+
+Note: the Contact section has links to my GitHub and LinkedIn.
