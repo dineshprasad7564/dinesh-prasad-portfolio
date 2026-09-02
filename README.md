@@ -19,6 +19,8 @@ A simple portfolio website about me. It has my photo, about me, my skills, my pr
 
 Open the index.html file in a browser. Nothing else is needed.
 
+On mobile, click the Menu button to open the menu.
+
 ## Made with
 
 Simple HTML, CSS and JavaScript. No frameworks used.
