@@ -26,9 +26,3 @@ On mobile, click the Menu button to open the menu.
 Simple HTML, CSS and JavaScript. No frameworks used.
 
 Note: the Contact section has links to my GitHub and LinkedIn.
-
-## Project demo video
-
-Watch the demo: see the live website and every file of code explained.
-
-![Task 1 demo](task1-demo.mp4)
