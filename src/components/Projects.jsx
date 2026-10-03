@@ -1,101 +1,58 @@
-import { useEffect, useRef } from 'react'
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion'
-import { ArrowUpRight, BarChart3, Clapperboard, Cpu, ShieldCheck } from 'lucide-react'
-import { Reveal, Stagger, Item } from './Reveal.jsx'
+import { ArrowUpRight } from 'lucide-react'
+import { Reveal } from './Reveal.jsx'
+import { WorksWheel } from './WorksWheel.jsx'
 
-const PROJECTS = [
+const BASE = import.meta.env.BASE_URL
+
+// Placeholder covers live in public/works/ — swap the SVGs for real
+// screenshots (same filenames) and the wheel picks them up automatically.
+const WORKS = [
   {
-    icon: ShieldCheck,
-    name: 'CodeGuard AI',
-    category: 'AI • Security',
-    desc: 'AI-assisted source-code security analysis with vulnerability detection and actionable fixes.',
+    title: 'CodeGuard AI',
+    image: `${BASE}works/codeguard-ai.svg`,
+    href: 'https://github.com/dineshprasad7564',
   },
   {
-    icon: Clapperboard,
-    name: 'DineVerse',
-    category: 'Web • API',
-    desc: 'An anime discovery and streaming-style interface built with modern frontend interactions.',
+    title: 'DineVerse',
+    image: `${BASE}works/dineverse.svg`,
+    href: 'https://github.com/dineshprasad7564',
   },
   {
-    icon: BarChart3,
-    name: 'AI Data Analytics',
-    category: 'Data • AI',
-    desc: 'Upload CSV, Excel or JSON data and turn it into useful insights, charts and dashboards.',
+    title: 'Data Analytics',
+    image: `${BASE}works/ai-data-analytics.svg`,
+    href: 'https://github.com/dineshprasad7564',
   },
   {
-    icon: Cpu,
-    name: 'IoT Projects',
-    category: 'IoT • ESP8266',
-    desc: 'Connected-device experiments using ESP8266/NodeMCU, sensors and web dashboards.',
+    title: 'IoT Lab',
+    image: `${BASE}works/iot-lab.svg`,
+    href: 'https://github.com/dineshprasad7564',
+  },
+  {
+    title: 'Landing Page',
+    image: `${BASE}works/landing-page.svg`,
+    href: 'https://dineshprasad7564.github.io/dinesh-prasad-landing-page/',
+  },
+  {
+    title: 'Google Clone',
+    image: `${BASE}works/google-clone.svg`,
+    href: 'https://dineshprasad7564.github.io/dinesh-prasad-google-clone/',
+  },
+  {
+    title: 'Contact Form',
+    image: `${BASE}works/contact-form.svg`,
+    href: 'https://dineshprasad7564.github.io/dinesh-prasad-contact-form/',
+  },
+  {
+    title: 'Blog',
+    image: `${BASE}works/blog.svg`,
+    href: 'https://dineshprasad7564.github.io/dinesh-prasad-blog/',
+  },
+  {
+    title: 'Gallery',
+    image: `${BASE}works/gallery.svg`,
+    href: 'https://dineshprasad7564.github.io/dinesh-prasad-gallery/',
   },
 ]
-
-/** Project card with smooth mouse-follow 3D tilt (desktop, fine pointers only). */
-function TiltCard({ project, index }) {
-  const reduce = useReducedMotion()
-  const fineRef = useRef(false)
-
-  useEffect(() => {
-    fineRef.current = window.matchMedia('(hover: hover) and (pointer: fine)').matches
-  }, [])
-
-  const rx = useMotionValue(0)
-  const ry = useMotionValue(0)
-  const rotateX = useSpring(rx, { stiffness: 170, damping: 22, mass: 0.5 })
-  const rotateY = useSpring(ry, { stiffness: 170, damping: 22, mass: 0.5 })
-
-  const onMove = (e) => {
-    if (!fineRef.current || reduce) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const px = (e.clientX - rect.left) / rect.width - 0.5
-    const py = (e.clientY - rect.top) / rect.height - 0.5
-    ry.set(px * 7)
-    rx.set(-py * 7)
-    e.currentTarget.style.setProperty('--mx', `${(px + 0.5) * 100}%`)
-    e.currentTarget.style.setProperty('--my', `${(py + 0.5) * 100}%`)
-  }
-
-  const onLeave = () => {
-    rx.set(0)
-    ry.set(0)
-  }
-
-  const Icon = project.icon
-
-  return (
-    <Item>
-      <motion.a
-        className="pcard"
-        href="https://github.com/dineshprasad7564"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${project.name} — view project on GitHub`}
-        style={{ rotateX, rotateY, transformPerspective: 900 }}
-        onMouseMove={onMove}
-        onMouseLeave={onLeave}
-        whileHover={reduce ? undefined : { y: -8, scale: 1.015 }}
-        transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
-      >
-        <div className="pcard__top">
-          <span className="pcard__icon" aria-hidden="true">
-            <Icon size={22} strokeWidth={2} />
-          </span>
-          <span className="pcard__cat">{project.category}</span>
-        </div>
-
-        <h3 className="pcard__name">{project.name}</h3>
-        <p className="pcard__desc">{project.desc}</p>
-
-        <div className="pcard__foot">
-          <span className="pcard__num">0{index + 1}</span>
-          <span className="pcard__cta">
-            View Project <ArrowUpRight size={15} aria-hidden="true" />
-          </span>
-        </div>
-      </motion.a>
-    </Item>
-  )
-}
 
 const TASKS = [
   {
@@ -135,18 +92,18 @@ export default function Projects() {
               Projects that <span className="serif-it accent">do something.</span>
             </h2>
             <p className="section-sub">
-              Real builds across AI, security, data and connected hardware — each one shipped to
-              solve an actual problem.
+              A wheel of real builds across AI, security, data, hardware and the
+              internship tasks — scroll or drag to turn it.
             </p>
           </div>
         </Reveal>
+      </div>
 
-        <Stagger className="projects__grid" gap={0.12}>
-          {PROJECTS.map((project, i) => (
-            <TiltCard key={project.name} project={project} index={i} />
-          ))}
-        </Stagger>
+      <Reveal as="div" className="works-wrap" y={24}>
+        <WorksWheel items={WORKS} label="Works ’26" action="View" />
+      </Reveal>
 
+      <div className="container">
         <Reveal className="social-cta" delay={0.15}>
           <a
             className="btn btn--solid"

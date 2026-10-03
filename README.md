@@ -77,7 +77,8 @@ npx gh-pages -d dist --nojekyll
         ├── Hero.jsx            # orbs, grid, floating tiles, PLAY REEL card
         ├── About.jsx           # red sheet: portrait card + social rail + chips
         ├── Skills.jsx          # 6 category cards, hover lift/glow
-        ├── Projects.jsx        # 3D-tilt cards + CTAs + internship task links
+        ├── Projects.jsx        # WorksWheel showcase + CTAs + internship task links
+        ├── WorksWheel.jsx      # 3D scroll/drag project wheel (ported to plain JSX+CSS)
         ├── Experience.jsx      # alternating red-sheet timeline
         ├── Certifications.jsx  # 3 editable certificate cards
         ├── Contact.jsx         # big mailto CTA + social pills
@@ -96,7 +97,8 @@ All placeholders are marked with `TODO` comments in the code.
 | --------------------------- | ------------------------------------------------------------ |
 | **Resume**                  | Drop your real file at `public/resume.pdf` (same name = zero code changes) |
 | **Instagram URL**           | Search for `TODO: add real Instagram URL` in `About.jsx`, `Contact.jsx`, `Footer.jsx` |
-| **Project links**           | `Projects.jsx` → `PROJECTS` array (currently linked to your GitHub profile) |
+| **Project links**           | `Projects.jsx` → `WORKS` array (currently linked to your GitHub profile) |
+| **Works covers**            | Replace `public/works/*.svg` with real screenshots (same filenames, ~640×442); regenerate placeholders with `npm run generate:works` |
 | **Certificate links/issuers** | `Certifications.jsx` → `CERTS` array (issuer/date placeholders + `View Certificate` href) |
 | **Portrait photo**          | `About.jsx` — swap the `.portrait` placeholder markup for an `<img>` |
 | **Experience entries**      | `Experience.jsx` → `JOBS` array                              |
